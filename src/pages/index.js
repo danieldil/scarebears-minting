@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import Web3 from 'web3';
 import ScareBearsABI from '../ABI/ScareBears.json';
+import MainSection from '../component/MainSection';
 
 const Minting = () => {
     const web3 = new Web3(window.ethereum);
@@ -9,6 +10,7 @@ const Minting = () => {
     const keccak256 = require ('keccak256');
     
     const [userAddress, setUserAddres] = useState();
+    const [walletConnected, setWalletConnected] = useState();
     const [scareBears, setScareBears] = useState();
     const [balanceQty, setBalanceQty] = useState();
     const [balanceId, setBalanceId] = useState();
@@ -31,6 +33,8 @@ const Minting = () => {
             setUserAddres(tempAccount);
 
             connectContract(tempAccount);
+
+            setWalletConnected(true);
 
             console.log('0x'+merkleRoot());
         }
@@ -93,17 +97,27 @@ const Minting = () => {
         }
     }
 
+    window.onload = () =>{
+        if(typeof window.ethereum !== 'undefined'){
+            connectWallet();
+        }
+        else{
+            window.alert('Please use browser the supports metamask!');
+        }
+    }
+
   return (
     <>
-        <p>User Address: {userAddress}</p>
-        <button onClick={connectWallet}>Connect Wallet</button>
-        <p>User NFT balance: {balanceQty}</p>
-        <p>Owned NFTs: {balanceId}</p>
-        <input id='whitelistMintQty' type='text' placeholder='number of mint'></input>
-        <button disabled={(loading ? 'disabled' : '')} onClick={whitelistMint}>Whitelist Mint</button>
-        <br></br> <br></br>
-        <input id='publicMintQty' type='text' placeholder='number of mint'></input>
-        <button disabled={(loading ? 'disabled' : '')} onClick={publicMint}>Public Sale</button>
+        <MainSection
+        userAddress={userAddress}
+        connectWallet={connectWallet}
+        balanceQty={balanceQty}
+        balanceId={balanceId}
+        loading={loading}
+        whitelistMint={whitelistMint}
+        publicMint={publicMint}
+        walletConnected={walletConnected}
+        ></MainSection>
     </>
   )
 }
