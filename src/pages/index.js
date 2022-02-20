@@ -35,11 +35,11 @@ const Minting = () => {
 
             const tempPublicSalePrice = await tempScareBears.methods.PUBLIC_SALE_PRICE().call();
             console.log(tempPublicSalePrice);
-            setPublicSalePrice(tempPublicSalePrice);
+            setPublicSalePrice(web3.utils.fromWei(tempPublicSalePrice));
 
             const tempWhitelistSalePrice = await tempScareBears.methods.WHITELIST_SALE_PRICE().call();
             console.log(tempWhitelistSalePrice);
-            setWhitelistSalePrice(tempWhitelistSalePrice);
+            setWhitelistSalePrice(web3.utils.fromWei(tempWhitelistSalePrice));
 
             const tempWhitelistSale = await tempScareBears.methods.whiteListSale.call();
             setWhitelistSale(tempWhitelistSale);

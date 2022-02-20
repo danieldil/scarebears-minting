@@ -47,10 +47,11 @@ const MainSection = ({
     }
 
     const whitelistMint = async() =>{
-        const price = String(parseInt(whitelistSalePrice) * counter);
-        console.log('0x'+merkleRoot());
+        const price = String(whitelistSalePrice * counter);
+        console.log(price);
         try{
-            await scareBears.methods.whitelistMint(hexProof(), counter).send({value: price, from: userAddress});
+            await scareBears.methods.whitelistMint(hexProof(), counter).send({value: web3.utils.toWei(price), from: userAddress});
+            window.alert('Transaction Submitted!');
         }
         catch(e){
             console.log(e);
@@ -58,10 +59,11 @@ const MainSection = ({
     }
 
     const publicMint = async() =>{
-        const price = String(parseInt(publicSalePrice) * counter);
+        const price = String(publicSalePrice * counter);
         console.log('0x'+merkleRoot());
         try{
-            await scareBears.methods.publicMint(hexProof(), counter).send({value: price, from: userAddress});
+            await scareBears.methods.publicMint(hexProof(), counter).send({value: web3.utils.toWei(price), from: userAddress});
+            window.alert('Transaction Submitted!');
         }
         catch(e){
             console.log(e);
@@ -77,6 +79,16 @@ const MainSection = ({
     }
 
     const plusButton = () =>{
+        if(whitelistSale){
+            if(counter === 2){
+                return;
+            }
+        }
+        else{
+            if(counter === 10){
+                return;
+            }
+        }
         setCounter(counter+1);
     }
 
