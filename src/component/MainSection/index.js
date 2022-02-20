@@ -96,7 +96,7 @@ const MainSection = ({
             <MainBoxContainer>
                 <MainBoxContent>
                     <BackgroundOpacity></BackgroundOpacity>
-                    <Title>PRESALE IS NOW LIVE!</Title>
+                    <Title>{(whitelistSale ? 'PRESALE' : 'PUBLIC SALE')} IS NOW LIVE!</Title>
                     <CounterContainer>
                         <MinusButton onClick={minusButton}>-</MinusButton>
                         <CounterNumber>{counter}</CounterNumber>
