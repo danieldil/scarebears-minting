@@ -80,7 +80,7 @@ const MainSection = ({
 
     const plusButton = () =>{
         if(whitelistSale){
-            if(counter === 2){
+            if(counter === 3){
                 return;
             }
         }

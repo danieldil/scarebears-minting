@@ -14,7 +14,7 @@ const Minting = () => {
     const [whitelistSale, setWhitelistSale] = useState();
     const [loading, setLoading] = useState(false);
 
-    const scareBearsAddress = '0xa2724362452c0E7E60FFC9D3621dEC95eA8EcF39';
+    const scareBearsAddress = '0x974B34a660E01A5b7b0C0dc01Ea9422400c8D7B5';
 
     const connectWallet = async() =>{
         connectContract();
