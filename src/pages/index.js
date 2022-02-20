@@ -17,18 +17,16 @@ const Minting = () => {
     const scareBearsAddress = '0xa2724362452c0E7E60FFC9D3621dEC95eA8EcF39';
 
     const connectWallet = async() =>{
+        connectContract();
         if(typeof window.ethereum != 'undefined'){
             const accounts = await window.ethereum.request({method: 'eth_requestAccounts'});
             const tempAccount = web3.utils.toChecksumAddress(accounts[0]);
             setUserAddres(tempAccount);
-
-            connectContract(tempAccount);
-
             setWalletConnected(true);
         }
     }
 
-    const connectContract = async(tempAccount) =>{
+    const connectContract = async() =>{
         try{
             const tempScareBears = new web3.eth.Contract(ScareBearsABI.abi, scareBearsAddress);
             setScareBears(tempScareBears);
