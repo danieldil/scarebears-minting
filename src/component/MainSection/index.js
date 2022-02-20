@@ -13,6 +13,7 @@ import { MainContainer,
     ImageBg,
     BackgroundOpacity} from './MainSectionElements'
 import bg from '../../images/bg.png';
+import Web3 from 'web3';
 
 const MainSection = ({
     userAddress,
@@ -34,7 +35,7 @@ const MainSection = ({
     const leafNode = whitelistAddresses.map(addr => keccak256(addr));
     const merkleTree = new MerkleTree(leafNode, keccak256, {sortPairs: true});
 
-
+    const web3 = new Web3(window.ethereum); 
 
     const hexProof = () =>{
         let index = whitelistAddresses.indexOf(userAddress);
@@ -102,7 +103,7 @@ const MainSection = ({
                         <CounterNumber>{counter}</CounterNumber>
                         <PlusButton onClick={plusButton}>+</PlusButton>
                     </CounterContainer>
-                    <CurrentPrice>PRICE: {(counter * 0.069).toFixed(5)} ETH</CurrentPrice>
+                    <CurrentPrice>PRICE: {(counter * (whitelistSale ? whitelistSalePrice : publicSalePrice)).toFixed(5)} ETH</CurrentPrice>
                     <ConnectButton onClick={walletConnected ? mintFunction : connectWallet}>{walletConnected ? 'Mint' : 'Connect Wallet'}</ConnectButton>
                 </MainBoxContent>
             </MainBoxContainer>
