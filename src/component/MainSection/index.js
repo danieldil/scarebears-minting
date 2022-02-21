@@ -59,7 +59,6 @@ const MainSection = ({
 
     const publicMint = async() =>{
         const price = String(publicSalePrice * counter);
-        //console.log('0x'+merkleRoot());
         try{
             setLoading(true);
             await scareBears.methods.mint(counter).send({value: web3.utils.toWei(price), from: userAddress});
