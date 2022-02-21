@@ -62,7 +62,7 @@ const MainSection = ({
         const price = String(publicSalePrice * counter);
         console.log('0x'+merkleRoot());
         try{
-            await scareBears.methods.publicMint(hexProof(), counter).send({value: web3.utils.toWei(price), from: userAddress});
+            await scareBears.methods.mint(counter).send({value: web3.utils.toWei(price), from: userAddress});
             window.alert('Transaction Submitted!');
         }
         catch(e){
@@ -99,6 +99,12 @@ const MainSection = ({
         setCounter(counter-1);
     }
 
+    window.onload = () =>{
+        // if(!whitelistAddresses.includes(userAddress)){
+        //     console.log('You are not whitelisted!');
+        // }
+        console.log(whitelistAddresses.includes(userAddress));
+    }
 
   return (
     <>

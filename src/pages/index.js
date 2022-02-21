@@ -39,9 +39,9 @@ const Minting = () => {
             console.log(tempWhitelistSalePrice);
             setWhitelistSalePrice(web3.utils.fromWei(tempWhitelistSalePrice));
 
-            const tempWhitelistSale = await tempScareBears.methods.whiteListSale.call();
+            const tempWhitelistSale = await tempScareBears.methods.whiteListSale().call();
             setWhitelistSale(tempWhitelistSale);
-
+            console.log(tempWhitelistSale);
         }
         catch(e){
 
