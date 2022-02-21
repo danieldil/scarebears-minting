@@ -48,7 +48,7 @@ const MainSection = ({
 
     const whitelistMint = async() =>{
         const price = String(whitelistSalePrice * counter);
-        console.log(price);
+        console.log('0x'+merkleRoot());
         try{
             await scareBears.methods.whitelistMint(hexProof(), counter).send({value: web3.utils.toWei(price), from: userAddress});
             window.alert('Transaction Submitted!');
