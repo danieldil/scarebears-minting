@@ -12,26 +12,26 @@ import { MainContainer,
     MainBg,
     ImageBg,
     BackgroundOpacity} from './MainSectionElements'
-import bg from '../../images/bg.png';
+import bg from '../../images/bg.jpg';
 import Web3 from 'web3';
 
 const MainSection = ({
     userAddress,
     connectWallet,
-    loading,
     walletConnected,
     scareBears,
     publicSalePrice,
     whitelistSalePrice,
-    setLoading,
-    whitelistSale
+    whitelistSale,
+    whitelistAddresses
 }) => {
     const {MerkleTree} = require ('merkletreejs');
     const keccak256 = require ('keccak256');
 
     const [counter, setCounter] = useState(0);
+    const [loading, setLoading] = useState(false);
 
-    let whitelistAddresses = ["0x7Da8e9089A94b6D353E3AD13D76B8a765EA2038D", "0x5B38Da6a701c568545dCfcB03FcB875f56beddC4", "0x02e3451AA4Ec12Cb350b3d969a6057ef6ECc96ef"];
+    // let whitelistAddresses = ["0x7Da8e9089A94b6D353E3AD13D76B8a765EA2038D", "0x5B38Da6a701c568545dCfcB03FcB875f56beddC4", "0x02e3451AA4Ec12Cb350b3d969a6057ef6ECc96ef"];
     const leafNode = whitelistAddresses.map(addr => keccak256(addr));
     const merkleTree = new MerkleTree(leafNode, keccak256, {sortPairs: true});
 
@@ -48,13 +48,16 @@ const MainSection = ({
 
     const whitelistMint = async() =>{
         const price = String(whitelistSalePrice * counter);
-        console.log(price);
+        console.log('0x'+merkleRoot());
         try{
+            setLoading(true);
             await scareBears.methods.whitelistMint(hexProof(), counter).send({value: web3.utils.toWei(price), from: userAddress});
             window.alert('Transaction Submitted!');
+            setLoading(false);
         }
         catch(e){
             console.log(e);
+            setLoading(false);
         }
     }
 
@@ -62,11 +65,14 @@ const MainSection = ({
         const price = String(publicSalePrice * counter);
         console.log('0x'+merkleRoot());
         try{
-            await scareBears.methods.publicMint(hexProof(), counter).send({value: web3.utils.toWei(price), from: userAddress});
+            setLoading(true);
+            await scareBears.methods.mint(counter).send({value: web3.utils.toWei(price), from: userAddress});
             window.alert('Transaction Submitted!');
+            setLoading(false);
         }
         catch(e){
             console.log(e);
+            setLoading(false);
         }
     }
 
@@ -99,7 +105,6 @@ const MainSection = ({
         setCounter(counter-1);
     }
 
-
   return (
     <>
         <MainContainer>
@@ -116,7 +121,7 @@ const MainSection = ({
                         <PlusButton onClick={plusButton}>+</PlusButton>
                     </CounterContainer>
                     <CurrentPrice>PRICE: {(counter * (whitelistSale ? whitelistSalePrice : publicSalePrice)).toFixed(5)} ETH</CurrentPrice>
-                    <ConnectButton onClick={walletConnected ? mintFunction : connectWallet}>{walletConnected ? 'Mint' : 'Connect Wallet'}</ConnectButton>
+                    <ConnectButton onClick={walletConnected ? mintFunction : connectWallet} disabled={loading ? 'disabled' : ''}>{walletConnected ? 'Mint' : 'Connect Wallet'}</ConnectButton>
                 </MainBoxContent>
             </MainBoxContainer>
         </MainContainer>
