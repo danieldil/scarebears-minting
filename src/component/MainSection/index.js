@@ -42,10 +42,6 @@ const MainSection = ({
         return merkleTree.getHexProof(leafNode[index]);
     }
 
-    const merkleRoot = () =>{
-        return merkleTree.getRoot().toString('hex');
-    }
-
     const whitelistMint = async() =>{
         const price = String(whitelistSalePrice * counter);
         //console.log('0x'+merkleRoot());
