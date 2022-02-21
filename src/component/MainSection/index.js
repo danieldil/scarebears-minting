@@ -47,7 +47,7 @@ const MainSection = ({
         //console.log('0x'+merkleRoot());
         try{
             setLoading(true);
-            await scareBears.methods.whitelistMint(hexProof(), counter).send({value: web3.utils.toWei(price), from: userAddress});
+            await scareBears.methods.whitelistMint(hexProof(), counter).send({value: web3.utils.toWei(price), from: web3.utils.toChecksumAddress(userAddress)});
             window.alert('Transaction Submitted!');
             setLoading(false);
         }
