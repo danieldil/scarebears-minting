@@ -3938,6 +3938,8 @@ const Minting = () => {
                 if(!whitelistAddresses.includes(tempAccount)){
                     window.alert('You are not whitelisted! Please wait for public mint');
                 }
+                setUserAddres(tempAccount);
+                return;
             }
             setUserAddres(web3.utils.toChecksumAddress(tempAccount));
         }
