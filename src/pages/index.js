@@ -15,6 +15,7 @@ const Minting = () => {
 
     const scareBearsAddress = '0x2b1037dEF2aA4ED427627903BDEf9BDd27Ae1ea3';
     let whitelistAddresses = [
+        "0x5c7Be7B4D9B5D91f73942A3c32acc1392aC12873",
         "0x343C80183e14183024D3a2C822612B78C94ed2D9",
         "0xeDCC562b3a262fD7Dea1a7998793a908728FE744",
         "0x548f794c11f3D2335d91f59872D14d25cA43A466",

@@ -100,9 +100,9 @@ const MainSection = ({
         setCounter(counter-1);
     }
 
-    window.onload = () =>{
-        console.log(merkleTree.getRoot().toString('hex'));
-    }
+    // window.onload = () =>{
+    //     console.log(merkleTree.getRoot().toString('hex'));
+    // }
 
   return (
     <>
