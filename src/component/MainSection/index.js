@@ -28,7 +28,7 @@ const MainSection = ({
     const {MerkleTree} = require ('merkletreejs');
     const keccak256 = require ('keccak256');
 
-    const [counter, setCounter] = useState(0);
+    const [counter, setCounter] = useState(1);
     const [loading, setLoading] = useState(false);
 
     // let whitelistAddresses = ["0x7Da8e9089A94b6D353E3AD13D76B8a765EA2038D", "0x5B38Da6a701c568545dCfcB03FcB875f56beddC4", "0x02e3451AA4Ec12Cb350b3d969a6057ef6ECc96ef"];
