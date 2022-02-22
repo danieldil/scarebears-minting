@@ -3953,6 +3953,9 @@ const Minting = () => {
             }
             setUserAddres(web3.utils.toChecksumAddress(tempAccount));
         }
+        else{
+            window.alert('Please use browser that supports web3!');
+        }
     }
 
     const connectContract = async() =>{
@@ -3982,7 +3985,7 @@ const Minting = () => {
             connectWallet();
         }
         else{
-            window.alert('Please use browser the supports metamask!');
+            window.alert('Please use browser that supports web3!');
         }
     }
 
