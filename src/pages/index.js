@@ -3995,7 +3995,7 @@ const Minting = () => {
             setWalletConnected(true);
             if(!whitelistAddresses.includes(web3.utils.toChecksumAddress(tempAccount))){
                 if(!whitelistAddresses.includes(tempAccount)){
-                    window.alert('You are not whitelisted! Please wait for public mint');
+                    // window.alert('You are not whitelisted! Please wait for public mint');
                 }
                 setUserAddres(tempAccount);
                 return;
