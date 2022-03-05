@@ -58,7 +58,7 @@ const MainSection = ({
     }
 
     const publicMint = async() =>{
-        const price = String(publicSalePrice * counter);
+        const price = String(0.099 * counter);
         try{
             setLoading(true);
             await scareBears.methods.mint(counter).send({value: web3.utils.toWei(price), from: userAddress});
@@ -100,9 +100,9 @@ const MainSection = ({
         setCounter(counter-1);
     }
 
-    window.onload = () =>{
-        console.log(merkleTree.getRoot().toString('hex'));
-    }
+    // window.onload = () =>{
+    //     console.log(merkleTree.getRoot().toString('hex'));
+    // }
 
   return (
     <>
@@ -119,7 +119,7 @@ const MainSection = ({
                         <CounterNumber>{counter}</CounterNumber>
                         <PlusButton onClick={plusButton}>+</PlusButton>
                     </CounterContainer>
-                    <CurrentPrice>PRICE: {(counter * (whitelistSale ? whitelistSalePrice : publicSalePrice)).toFixed(5)} ETH</CurrentPrice>
+                    <CurrentPrice>PRICE: {(counter * 0.099)} ETH</CurrentPrice>
                     <ConnectButton onClick={walletConnected ? mintFunction : connectWallet} disabled={loading ? 'disabled' : ''}>{walletConnected ? 'Mint' : 'Connect Wallet'}</ConnectButton>
                 </MainBoxContent>
             </MainBoxContainer>
